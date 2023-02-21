@@ -7,12 +7,13 @@ namespace AM.ApplicationCore.Domain
 {
     public class Passenger
     {
-        public DateOnly BirthDate { get; set; }
+        public int Id { get; set; }
+        public DateTime BirthDate { get; set; }
         public int PassportNumber { get; set; }
         public string EmailAdress { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string TelNumber { get; set; }
+        public int TelNumber { get; set; }
         public List<Flight> Flights { get; set; }
 
         public override string ToString()
