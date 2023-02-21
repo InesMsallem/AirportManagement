@@ -1,8 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using AM.ApplicationCore.Domain;
-using AM.ApplicationCore.Interfaces;
 using AM.ApplicationCore.Services;
-
+using AM.Infrastructure;
 Plane Plane1 = new Plane();
 Plane1.Capacity = 200;
 Plane1.ManuFactureDate = new DateTime(2023, 01, 31);
@@ -10,6 +9,9 @@ Plane1.PlaneType = PlaneType.AirBus;
 //Constructeur param
 //Plane Plane2 = new Plane(PlaneType.Boing, 500, new DateTime(2022, 05, 23));
 //init obj
+AMContext ctx = new AMContext();
+ctx.Flights.Add(TestData.flight1);
+ctx.SaveChanges();  
 Plane Plane3 = new Plane
                {
                    Capacity = 3,
@@ -42,27 +44,26 @@ Staff staff1 = new Staff
 Console.WriteLine("Staff1: ");
 staff1.PassengerType();
 
+//ServiceFlight serviceFlight = new ServiceFlight();
+//serviceFlight.Flights = TestData.listFlights;
+//foreach (var item in serviceFlight.GetFlightDate("Paris"))
+//{ 
+//    Console.WriteLine(item);
+//}
+//serviceFlight.GetFlight("Destination", "Paris");
 
-ServiceFlight serviceFlight = new ServiceFlight();
-serviceFlight.Flights = TestData.listFlights;
-foreach (var item in serviceFlight.GetFlightDate("Paris"))
-{ 
-    Console.WriteLine(item);
-}
-serviceFlight.GetFlight("Destination", "Paris");
+//serviceFlight.FlightDetailsDel(TestData.BoingPlane);
 
-serviceFlight.FlightDetailsDel(TestData.BoingPlane);
+//Console.WriteLine("Number of flights: " + serviceFlight.ProgrammedFlightNumber(new DateTime(2022,02,01)));
+//Console.WriteLine("Average of Flighs : " +
+//    serviceFlight.DurationAverageDel("Madrid"));
 
-Console.WriteLine("Number of flights: " + serviceFlight.ProgrammedFlightNumber(new DateTime(2022,02,01)));
-Console.WriteLine("Average of Flighs : " +
-    serviceFlight.DurationAverageDel("Madrid"));
+//foreach (var i in serviceFlight.OrderedDurationFlights())
+//{
+//    Console.WriteLine(i);
+//}
 
-foreach (var i in serviceFlight.OrderedDurationFlights())
-{
-    Console.WriteLine(i);
-}
-
-serviceFlight.DestinationGroupedFlights();
+//serviceFlight.DestinationGroupedFlights();
 
 
 
